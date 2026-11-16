@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#121212" />
+<title>DanzZy.x21 | Store & Tools</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&family=Bangers&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- 1. LOGIN SCREEN -->
+<div id="screen-login" style="position: fixed; inset: 0; background: #121212; z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;">
+  <div class="panel" style="width: 100%; max-width: 350px; text-align: center;">
+    <div style="width: 80px; height: 80px; margin: 0 auto 16px; border-radius: 50%; overflow: hidden; border: 3px solid #7B2CBF;">
+      <img src="assets/images/landing.jpg" alt="Logo" onerror="this.src='https://via.placeholder.com/80/1e1e1e/7B2CBF?text=D'" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+    <h2 style="font-family: Bangers; font-size: 1.8rem; color: #fff; margin-bottom: 4px;">AKSES TERBATAS</h2>
+    <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 24px;">Silakan login untuk mengakses Dashboard</p>
+    <button onclick="prosesLoginGoogle()" style="width: 100%; padding: 12px; background: #fff; color: #000; border: 2px solid #000; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 3px 3px 0 #7B2CBF;">Sign in with Google</button>
+  </div>
+</div>
+
+<!-- 2. LANDING PAGE ANIMATION -->
+<div id="screen-landing" style="position: fixed; inset: 0; background: #121212; z-index: 9998; display: none; flex-direction: column; align-items: center; justify-content: center; padding: 20px; text-align: center;">
+  <div style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden; border: 4px solid #7B2CBF; animation: spinBorder 3s linear infinite; margin-bottom: 20px;">
+    <img src="assets/images/landing.jpg" alt="Logo" onerror="this.src='https://via.placeholder.com/100/1e1e1e/7B2CBF?text=D'" style="width:100%; height:100%; object-fit:cover;">
+  </div>
+  <h1 id="landing-typing" style="font-family: Bangers; font-size: 2rem; color: #fff; margin-bottom: 20px; min-height: 40px;"></h1>
+  <div style="width: 80%; max-width: 300px; height: 10px; background: #333; border-radius: 10px; border: 2px solid #000; margin-bottom: 20px; overflow: hidden;">
+    <div id="loading-bar" style="width: 0%; height: 100%; background: #7B2CBF; transition: width 0.1s;"></div>
+  </div>
+  <div style="max-width: 500px; text-align: left; display: flex; flex-direction: column; gap: 12px;">
+    <p class="fade-text" style="font-size: 0.85rem; color: #ccc; opacity: 0; transition: opacity 0.5s;">Web yang dibuat khusus mengelola produk digital dan Tools gratis buat pengguna yang mengunjungi web...</p>
+    <p class="fade-text" style="font-size: 0.85rem; color: #ccc; opacity: 0; transition: opacity 0.5s;">Web hanya khusus untuk tools dan produk. Jika ingin fitur lain lebih keren seperti [ APP PROJECT MILIK ADMIN ]...</p>
+    <p class="fade-text" style="font-size: 0.85rem; color: #ccc; opacity: 0; transition: opacity 0.5s;">Kami berkomitmen memberikan pelayanan terbaik dengan menghadirkan sistem yang cepat, aman, dan terpercaya...</p>
+  </div>
+</div>
+
+<!-- 3. DASHBOARD UTAMA -->
+<div id="screen-dashboard" style="display: none;">
+  <header class="welcome-panel">
+    <div class="header-content">
+      <div class="logo-box"><img src="assets/images/landing.jpg" alt="Logo" onerror="this.src='https://via.placeholder.com/70/7B2CBF/FFFFFF?text=D'"></div>
+      <div class="header-text">
+        <h1 class="welcome-title"><span id="typing"></span><span class="caret">|</span></h1>
+        <p class="welcome-desc">Nikmatin pembaruan web kami yang dirancang untuk mengelola produk digital dan tools gratis.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU CEPAT -->
+  <section class="panel">
+    <div class="panel-head"><h2>MENU CEPAT</h2></div>
+    <div class="card-grid">
+      <article class="comic-card" onclick="bukaSupport()" style="background: #333; cursor: pointer;">
+        <h3>Support CS</h3><p style="font-size: 0.75rem;">Bantuan & Laporan</p>
+      </article>
+      <article class="comic-card" onclick="bukaAntrian()" style="background: #333; cursor: pointer;">
+        <h3>Antrian Joki</h3><p style="font-size: 0.75rem;">Cek Status Pesanan</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- LYNK -->
+  <section class="panel">
+    <div class="panel-head"><h2>LYNK DANZZY.X21</h2><button class="btn-toggle" onclick="toggleBox('lynk-grid', this)">∆</button></div>
+    <div class="card-grid" id="lynk-grid">
+      <article class="comic-card"><h3>Grup JB¹ x Own</h3><a href="#" class="btn-ungu">Buka Link</a></article>
+      <article class="comic-card"><h3>Channel Utama</h3><a href="#" class="btn-ungu">Buka Link</a></article>
+    </div>
+  </section>
+
+  <!-- JOKI KONTAK -->
+  <section class="panel">
+    <div class="panel-head"><h2>JOKI KONTAK</h2><button class="btn-toggle" onclick="toggleBox('joki-grid', this)">∆</button></div>
+    <div class="card-grid" id="joki-grid">
+      <article class="comic-card"><h3>Joki 1 Hari</h3><p class="price">Rp 1.000</p><ul class="desc-list"><li>Sw 24 Jam</li></ul><button class="btn-ungu" onclick="bukaOrderJoki('Joki 1 Hari', 1000)">Order Joki</button></article>
+      <article class="comic-card"><h3>Joki 3 Hari</h3><p class="price">Rp 3.500</p><ul class="desc-list"><li>Sw 3 Hari</li></ul><button class="btn-ungu" onclick="bukaOrderJoki('Joki 3 Hari', 3500)">Order Joki</button></article>
+      <article class="comic-card"><h3>Joki Permanen</h3><p class="price">Rp 50.000</p><ul class="desc-list"><li>Sw Permanen</li></ul><button class="btn-ungu" onclick="bukaOrderJoki('Joki Permanen', 50000)">Order Joki</button></article>
+    </div>
+  </section>
+
+  <!-- SCRIPT -->
+  <section class="panel">
+    <div class="panel-head"><h2>ORDER SCRIPT</h2><button class="btn-toggle" onclick="toggleBox('script-grid', this)">∆</button></div>
+    <div class="card-grid" id="script-grid">
+      <article class="comic-card">
+        <h3>Script Bot Via WA</h3><p class="price">Rp 15.000</p>
+        <ul class="desc-list"><li>240 Fitur Bot</li></ul>
+        <button class="btn-ungu" onclick="bukaOrderScript('Script Bot Via WA', 15000)">Beli Script</button>
+      </article>
+    </div>
+  </section>
+</div>
+
+<!-- 4. HALAMAN ANTRIAN JOKI -->
+<div id="screen-antrian" style="display: none; padding: 16px;">
+  <section class="panel">
+    <div class="panel-head"><h2>CEK ANTRIAN JOKI</h2><button class="btn-toggle" onclick="kembaliKeDashboard()">Kembali</button></div>
+    <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+      <input type="text" id="cari-trx" placeholder="Cari ID (DX-2026-...)" style="flex: 1; padding: 10px; border-radius: 8px; border: 2px solid #000;">
+      <button class="btn-ungu" style="width: auto; padding: 0 16px;" onclick="cariAntrian()">CARI</button>
+    </div>
+    <div id="hasil-antrian" style="font-size: 0.8rem;"></div>
+  </section>
+</div>
+
+<!-- 5. HALAMAN SUPPORT CS -->
+<div id="screen-support" style="display: none; padding: 16px;">
+  <section class="panel">
+    <div class="panel-head"><h2>SUPPORT CS</h2><button class="btn-toggle" onclick="kembaliKeDashboard()">Kembali</button></div>
+    <div class="banner-card">
+      <label style="font-size: 0.8rem; font-weight: bold;">Nama Anda</label>
+      <input type="text" id="cs-nama" style="border: 2px solid #000;">
+      <label style="font-size: 0.8rem; font-weight: bold;">Laporan / Request (Max 250)</label>
+      <textarea id="cs-laporan" maxlength="250" style="border: 2px solid #000;"></textarea>
+      <button class="btn-ungu" style="background: #7B2CBF;" onclick="alert('Laporan terkirim ke Admin!')">Kirim Laporan</button>
+    </div>
+  </section>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav" id="bottom-nav" style="display: none;">
+  <button class="nav-btn active" onclick="kembaliKeDashboard()"><span style="font-size: 1.2rem;">🏠</span><span>Dashboard</span></button>
+  <button class="nav-btn" onclick="alert('Fitur Penjelasan menyusul.')"><span style="font-size: 1.2rem;">⚙️</span><span>Penjelasan</span></button>
+  <button class="nav-btn" onclick="alert('Fitur Testimoni menyusul.')"><span style="font-size: 1.2rem;">👑</span><span>Testimoni</span></button>
+  <button class="nav-btn" onclick="window.location.href='admin.html'"><span style="font-size: 1.2rem;">🔐</span><span>Admin</span></button>
+</nav>
+
+<!-- MODAL ORDER -->
+<div class="modal-overlay" id="modal-order">
+  <div class="modal-box">
+    <h3 id="order-title" style="color: #7B2CBF; font-size: 1.2rem; margin-bottom: 12px;">Form Order</h3>
+    <form id="form-order" onsubmit="submitOrder(event)">
+      <input type="hidden" id="order-item"><input type="hidden" id="order-price"><input type="hidden" id="order-type">
+      <label style="font-size: 0.8rem; font-weight: bold;">Nama JB/Store</label>
+      <input type="text" id="order-name" required>
+      <label style="font-size: 0.8rem; font-weight: bold;">Nomor WhatsApp</label>
+      <input type="number" id="order-wa" required>
+      <div style="display: flex; gap: 8px; margin-top: 12px;">
+        <button type="button" class="btn-ungu" style="background: #666;" onclick="closeModal('modal-order')">Batal</button>
+        <button type="submit" class="btn-ungu" style="background: #7B2CBF;">BUAT PESANAN</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>

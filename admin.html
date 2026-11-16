@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Panel | DanzZy.x21</title>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600;800&family=Bangers&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  .admin-section { margin-bottom: 24px; background: #1e1e1e; padding: 16px; border-radius: 12px; border: 1px solid #333; }
+  .admin-section h3 { color: #9D4EDD; font-size: 1.1rem; margin-bottom: 12px; border-bottom: 1px solid #333; padding-bottom: 8px; }
+  .admin-form input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 2px solid #000; background: #fff; color: #000; font-weight: bold; }
+  .item-list { font-size: 0.85rem; background: #fff; color: #000; padding: 12px; border-radius: 8px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; border: 2px solid #000; box-shadow: 3px 3px 0 #7B2CBF;}
+  .btn-del { background: #d32f2f; color: #fff; border: 2px solid #000; padding: 6px 12px; border-radius: 6px; font-weight: bold; cursor: pointer; }
+</style>
+</head>
+<body style="background: #0a0a0a;">
+
+<!-- LOGIN PIN -->
+<div id="login-panel" class="panel" style="margin-top: 50px; text-align: center; max-width: 350px; margin-left: auto; margin-right: auto;">
+  <h2 style="font-family: Bangers; font-size: 2rem; color: #7B2CBF;">ADMIN LOGIN</h2>
+  <input type="password" id="pin-input" maxlength="6" placeholder="••••••" style="text-align: center; font-size: 1.5rem; letter-spacing: 5px; width: 100%; padding: 12px; border-radius: 8px; border: 2px solid #7B2CBF; background: #000; color: #fff; font-weight: bold; margin-bottom: 16px; margin-top: 20px;">
+  <button class="btn-ungu" style="width: 100%; background: #7B2CBF;" onclick="cekPin()">Masuk</button>
+  <p id="pin-err" style="color: #ff3b3b; font-size: 0.8rem; margin-top: 10px; display: none; font-weight: bold;">PIN Salah!</p>
+</div>
+
+<!-- DASHBOARD ADMIN -->
+<div id="admin-panel" style="display: none; max-width: 800px; margin: 0 auto; padding: 16px;">
+  <div class="panel-head" style="margin-bottom: 20px;">
+    <h2 style="font-family: Bangers; color: #fff; font-size: 1.5rem;">CONTROL PANEL</h2>
+    <button class="btn-ungu" style="width: auto; background: #d32f2f;" onclick="window.location.href='index.html'">Keluar</button>
+  </div>
+  
+  <div class="admin-section">
+    <h3>📊 List Antrian Joki (Live)</h3>
+    <div id="antrian-container" style="display: flex; flex-direction: column; gap: 12px;"></div>
+  </div>
+
+  <div class="admin-section">
+    <h3>🔗 Control Lynk</h3>
+    <div class="admin-form">
+      <input type="text" id="lynk-name" placeholder="Nama Lynk">
+      <input type="text" id="lynk-url" placeholder="URL (https://...)">
+      <button class="btn-ungu" style="background: #7B2CBF;" onclick="tambahLynk()">➕ ADD LYNK</button>
+    </div>
+    <div id="list-lynk" style="margin-top: 12px;"></div>
+  </div>
+
+  <div class="admin-section">
+    <h3>💾 Control Script</h3>
+    <div class="admin-form">
+      <input type="text" id="script-title" placeholder="Judul Script">
+      <input type="number" id="script-price" placeholder="Harga (contoh: 15000)">
+      <button class="btn-ungu" style="background: #7B2CBF;" onclick="tambahScript()">➕ ADD SCRIPT</button>
+    </div>
+    <div id="list-script" style="margin-top: 12px;"></div>
+  </div>
+
+  <div class="admin-section">
+    <h3>👑 Control Testimoni</h3>
+    <div class="admin-form">
+      <input type="text" id="t-trx" placeholder="Trx To (Nama Pembeli)">
+      <input type="text" id="t-item" placeholder="Item (misal: Joki 1 Hari)">
+      <input type="number" id="t-nominal" placeholder="Nominal">
+      <label style="font-size: 0.8rem; font-weight: bold; display: block; margin-bottom: 4px; color: #fff;">Upload Bukti (Foto)</label>
+      <input type="file" id="t-foto" accept="image/*" style="background:#fff; padding: 6px;">
+      <button class="btn-ungu" style="background: #7B2CBF; margin-top: 10px;" onclick="tambahTesti()">➕ ADD TESTIMONI</button>
+    </div>
+    <div id="list-testi" style="margin-top: 12px;"></div>
+  </div>
+
+</div>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
