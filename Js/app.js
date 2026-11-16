@@ -136,3 +136,53 @@ function loadDataFrontend() {
     scripts.forEach(s => { document.getElementById('script-grid').innerHTML += `<article class="comic-card"><h3>${s.title}</h3><p class="price">Rp ${s.price}</p><button class="btn-ungu" onclick="bukaOrderScript('${s.title}', ${s.price})">Beli Script</button></article>`; });
   }
 }
+
+// FUNGSI LOGIN & LANDING PAGE
+function prosesLoginGoogle() {
+  // Sembunyikan layar login
+  document.getElementById('screen-login').style.display = 'none';
+  
+  // Tampilkan layar landing page
+  document.getElementById('screen-landing').style.display = 'flex';
+  
+  // Jalankan animasi landing
+  jalankanAnimasiLanding();
+}
+
+function jalankanAnimasiLanding() {
+  const textHeader = "👋 WELLCOME TO WEB DANZZY.X21";
+  let x = 0;
+  const typingEl = document.getElementById('landing-typing');
+  
+  const intervalTyping = setInterval(() => {
+    if (x < textHeader.length) { 
+      typingEl.innerHTML += textHeader.charAt(x); 
+      x++; 
+    } else { 
+      clearInterval(intervalTyping); 
+    }
+  }, 40);
+
+  let progress = 0;
+  const bar = document.getElementById('loading-bar');
+  
+  const intervalBar = setInterval(() => {
+    progress += 2; 
+    bar.style.width = progress + "%";
+    
+    if (progress === 20) document.querySelectorAll('.fade-text')[0].style.opacity = 1;
+    if (progress === 50) document.querySelectorAll('.fade-text')[1].style.opacity = 1;
+    if (progress === 80) document.querySelectorAll('.fade-text')[2].style.opacity = 1;
+    
+    if (progress >= 100) {
+      clearInterval(intervalBar);
+      setTimeout(() => {
+        document.getElementById('screen-landing').style.display = 'none';
+        document.getElementById('screen-dashboard').style.display = 'block';
+        document.getElementById('bottom-nav').style.display = 'flex';
+        typeWriter(); 
+        loadDataFrontend();
+      }, 1000);
+    }
+  }, 30);
+}
